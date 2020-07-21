@@ -17,7 +17,11 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
+
+public class MainActivity extends AppCompatActivity {
 	private final int NOTIF_BUTTON_ID = 1;
 	private final int NOTIF_SEEKBAR_ID = 2;
 	private final int NOTIF_TOGGLE_ID = 3;
@@ -49,20 +53,24 @@ public class MainActivity extends Activity {
 		toast.show();
 	}
 
+	public void miSnackBar(View v) {
+		//Snackbar.make(findViewById(R.id.coord), "Hola, soy un SnackBar", Snackbar.LENGTH_SHORT).show();
+
+		Snackbar sbar = Snackbar.make(findViewById(R.id.coord), "Hola, soy un SnackBar", Snackbar.LENGTH_SHORT);
+		sbar.setAction("Saludar", new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Hola SnackBar !!!", Toast.LENGTH_SHORT).show();
+			}
+		});
+		sbar.show();
+	}
+
 	private void createNotificationChannel() {
-		// Create the NotificationChannel, but only on API 26+ because
-		// the NotificationChannel class is new and not in the support library
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			CharSequence name = "CanalPrueba";
-			String description = "Canal de pruebas";
-			int importance = NotificationManager.IMPORTANCE_DEFAULT;
-			NotificationChannel channel = new NotificationChannel("IdPrueba", name, importance);
-			channel.setDescription(description);
-			// Register the channel with the system; you can't change the importance
-			// or other notification behaviors after this
-			NotificationManager notificationManager = getSystemService(NotificationManager.class);
-			notificationManager.createNotificationChannel(channel);
-		}
+		NotificationChannel channel = new NotificationChannel("IdPrueba", "CanalPrueba", NotificationManager.IMPORTANCE_DEFAULT);
+		channel.setDescription("Canal de pruebas");
+		NotificationManager notificationManager = getSystemService(NotificationManager.class);
+		notificationManager.createNotificationChannel(channel);
 	}
 
 
