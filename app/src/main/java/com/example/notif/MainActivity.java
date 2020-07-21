@@ -49,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
 		Toast toast = new Toast(getApplicationContext());
 		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);//posición en la pantalla
 		toast.setDuration(Toast.LENGTH_LONG);
-		toast.setView(layout);//caga el layout en el toast
+		toast.setView(layout);//carga el layout en el toast
 		toast.show();
 	}
 
 	public void miSnackBar(View v) {
 		//Snackbar.make(findViewById(R.id.coord), "Hola, soy un SnackBar", Snackbar.LENGTH_SHORT).show();
 
-		Snackbar sbar = Snackbar.make(findViewById(R.id.coord), "Hola, soy un SnackBar", Snackbar.LENGTH_SHORT);
+		Snackbar sbar = Snackbar.make(findViewById(R.id.coord), "Hola, soy un SnackBar", Snackbar.LENGTH_LONG);
 		sbar.setAction("Saludar", new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
